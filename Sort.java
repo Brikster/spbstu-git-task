@@ -1,14 +1,14 @@
 public class Sort {
 
     public static int[] sort(int[] mas) {
-    int j;
-    for (int i = 1; i < sortArr.length; i++) {
-        int swap = sortArr[i];
-        for (j = i; j > 0 && swap < sortArr[j - 1]; j--) {
-            sortArr[j] = sortArr[j - 1];
+        int j;
+        for (int i = 1; i < mas.length; i++) {
+            int swap = mas[i];
+            for (j = i; j > 0 && swap < mas[j - 1]; j--) {
+                mas[j] = mas[j - 1];
+            }
+            mas[j] = swap;
         }
-        sortArr[j] = swap;
-    }
         return mas;
     }
 }

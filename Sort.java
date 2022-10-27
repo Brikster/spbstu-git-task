@@ -1,37 +1,29 @@
 public class Sort {
 
     public static int[] sort(int[] mas) {
-        quicksort(mas, 0, mas.length - 1);
-        return mas;
-    }
+        // Shellsort impl
+        int h = 1;
 
-    public static void quicksort(int arr[], int begin, int end) {
-        if (begin < end) {
-            int partitionIndex = partition(arr, begin, end);
-
-            quicksort(arr, begin, partitionIndex-1);
-            quicksort(arr, partitionIndex+1, end);
+        while (h <= mas.length / 3) {
+            h = h * 3 + 1;
         }
-    }
 
-    private static int partition(int arr[], int begin, int end) {
-        int pivot = arr[end];
-        int i = (begin-1);
+        while (h > 0) {
+            for (int outer = h; outer < mas.length; outer++) {
+                int tmp = mas[outer];
+                int inner = outer;
 
-        for (int j = begin; j < end; j++) {
-            if (arr[j] <= pivot) {
-                i++;
+                while (inner > h - 1 && mas[inner - h] > tmp) {
+                    mas[inner] = mas[inner - h];
+                    inner -= h;
+                }
 
-                int swapTemp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = swapTemp;
+                mas[inner] = tmp;
             }
+
+            h = (h - 1) / 3;
         }
-
-        int swapTemp = arr[i+1];
-        arr[i+1] = arr[end];
-        arr[end] = swapTemp;
-
-        return i+1;
+        
+        return mas;
     }
 }
